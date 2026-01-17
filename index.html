@@ -58,51 +58,52 @@
             position: relative;
         }
         
-        /* Музыкальный плеер */
+        /* Компактный музыкальный плеер */
         .music-player {
             position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--card-bg);
-            border: 1px solid var(--accent-purple);
-            border-radius: 25px;
-            padding: 10px 20px;
+            bottom: 90px;
+            right: 20px;
             z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 4px 20px rgba(122, 63, 241, 0.3);
-            min-width: 300px;
-            max-width: 90%;
-            backdrop-filter: blur(10px);
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+        
+        .music-player:hover {
+            opacity: 0.9;
         }
         
         .music-player button {
-            background: var(--accent-purple);
+            background: rgba(122, 63, 241, 0.7);
             border: none;
             border-radius: 50%;
-            width: 36px;
-            height: 36px;
+            width: 50px;
+            height: 50px;
             color: white;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(122, 63, 241, 0.4);
+            font-size: 1.2rem;
+            backdrop-filter: blur(5px);
         }
         
         .music-player button:hover {
-            background: var(--accent-light-purple);
+            background: rgba(168, 85, 247, 0.9);
             transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
         }
         
-        .music-player span {
-            font-size: 0.9rem;
-            color: var(--text-primary);
+        .music-player button.paused::after {
+            content: "▶";
         }
         
-        /* Аудио элемент скрыт, управление через кнопки */
+        .music-player button.playing::after {
+            content: "❚❚";
+        }
+        
+        /* Аудио элемент скрыт */
         #background-music {
             display: none;
         }
@@ -391,9 +392,15 @@
             }
             
             .music-player {
-                bottom: 10px;
-                padding: 8px 15px;
-                min-width: 280px;
+                bottom: 80px;
+                right: 15px;
+                opacity: 0.4;
+            }
+            
+            .music-player button {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
             }
             
             .resource-card {
@@ -421,10 +428,14 @@
             }
             
             .music-player {
-                flex-direction: column;
-                gap: 10px;
-                padding: 15px;
-                border-radius: 15px;
+                bottom: 70px;
+                right: 10px;
+            }
+            
+            .music-player button {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
             }
             
             .phase-container {
@@ -453,7 +464,7 @@
         
         .back-to-top {
             position: fixed;
-            bottom: 80px;
+            bottom: 30px;
             right: 20px;
             background: var(--accent-purple);
             color: white;
@@ -464,18 +475,19 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            opacity: 0;
+            opacity: 0.3;
             transition: all 0.3s ease;
             z-index: 999;
         }
         
-        .back-to-top.visible {
-            opacity: 1;
-        }
-        
         .back-to-top:hover {
+            opacity: 0.9;
             background: var(--accent-light-purple);
             transform: translateY(-5px);
+        }
+        
+        .back-to-top.visible {
+            opacity: 0.3;
         }
     </style>
 </head>
@@ -488,11 +500,9 @@
     <!-- Кнопка "Наверх" -->
     <a href="#" class="back-to-top" id="backToTop">↑</a>
     
-    <!-- Музыкальный плеер -->
+    <!-- Компактный музыкальный плеер -->
     <div class="music-player">
-        <button id="playBtn">▶</button>
-        <button id="pauseBtn">❚❚</button>
-        <span>New Directive - Фоновая музыка</span>
+        <button id="musicToggle" class="paused"></button>
         <audio id="background-music" loop>
             <!-- Используем альтернативный источник музыки -->
             <source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_d1714ab38b.mp3?filename=ambient-piano-amp-strings-114473.mp3" type="audio/mpeg">
@@ -769,22 +779,24 @@
         // Управление музыкой
         document.addEventListener('DOMContentLoaded', function() {
             const audio = document.getElementById('background-music');
-            const playBtn = document.getElementById('playBtn');
-            const pauseBtn = document.getElementById('pauseBtn');
+            const toggleBtn = document.getElementById('musicToggle');
             
             // Установка громкости на 30%
             audio.volume = 0.3;
             
-            playBtn.addEventListener('click', function() {
-                audio.play().catch(e => {
-                    console.log("Автовоспроизведение заблокировано, нажмите на кнопку воспроизведения");
-                    // Показываем уведомление пользователю
-                    alert("Пожалуйста, нажмите на кнопку воспроизведения для запуска музыки");
-                });
-            });
-            
-            pauseBtn.addEventListener('click', function() {
-                audio.pause();
+            // Обработчик переключения музыки
+            toggleBtn.addEventListener('click', function() {
+                if (audio.paused) {
+                    audio.play().catch(e => {
+                        console.log("Автовоспроизведение заблокировано");
+                    });
+                    this.classList.remove('paused');
+                    this.classList.add('playing');
+                } else {
+                    audio.pause();
+                    this.classList.remove('playing');
+                    this.classList.add('paused');
+                }
             });
             
             // Отслеживание видимости разделов для прогресс-индикатора
@@ -806,7 +818,7 @@
                 
                 currentSectionElement.textContent = currentSection;
                 
-                // Показать/скрыть кнопку "Наверх"
+                // Показать/скрыть кнопку "Наверх" (всегда видна, но с низкой прозрачностью)
                 if (window.scrollY > 500) {
                     backToTopButton.classList.add('visible');
                 } else {
