@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анализ продукта: Pulse Казани</title>
+    <style>
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #121212;
+            --accent-purple: #8a2be2;
+            --accent-light-purple: #a855f7;
+            --text-primary: #f5f5f5;
+            --text-secondary: #d4d4d4;
+            --border-color: #333333;
+            --card-bg: #1a1a1a;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--accent-purple);
+        }
+        
+        h1 {
+            color: var(--accent-light-purple);
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-light-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+        
+        .step-container {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--accent-purple);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .step-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(138, 43, 226, 0.15);
+        }
+        
+        h2 {
+            color: var(--accent-light-purple);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2::before {
+            content: "▶";
+            color: var(--accent-purple);
+            font-size: 1.4rem;
+        }
+        
+        h3 {
+            color: var(--text-primary);
+            margin: 25px 0 15px;
+            font-size: 1.4rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+        
+        .product-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .info-card {
+            background-color: var(--secondary-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .info-card h4 {
+            color: var(--accent-light-purple);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: var(--secondary-bg);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: var(--accent-purple);
+            color: white;
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tr:hover {
+            background-color: rgba(138, 43, 226, 0.1);
+        }
+        
+        .metric-highlight {
+            color: var(--accent-light-purple);
+            font-weight: bold;
+        }
+        
+        .smart-hypothesis {
+            background-color: rgba(138, 43, 226, 0.1);
+            border-left: 4px solid var(--accent-purple);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .smart-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .smart-point {
+            background-color: var(--secondary-bg);
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .phase-container {
+            margin: 25px 0;
+            padding: 20px;
+            background-color: var(--secondary-bg);
+            border-radius: 8px;
+        }
+        
+        .phase-container h4 {
+            color: var(--accent-light-purple);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .phase-container h4::before {
+            content: "✓";
+            background-color: var(--accent-purple);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .unit-economics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .unit-card {
+            background: linear-gradient(135deg, var(--secondary-bg), #1f1f1f);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+        
+        .unit-value {
+            font-size: 2rem;
+            color: var(--accent-light-purple);
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .unit-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .marginality {
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .tag {
+            display: inline-block;
+            background-color: var(--accent-purple);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .product-info, .smart-points, .unit-economics {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .step-container {
+                padding: 20px;
+            }
+        }
+        
+        .progress-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--secondary-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: var(--border-color);
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-light-purple));
+            width: 60%;
+            border-radius: 5px;
+        }
+        
+        .status {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        
+        .status-item {
+            text-align: center;
+        }
+        
+        .status-value {
+            font-size: 1.5rem;
+            color: var(--accent-light-purple);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Анализ продукта: Pulse Казани</h1>
+        <p class="subtitle">Исследование и стратегия развития мобильного приложения для туристов и жителей Казани</p>
+        <div class="tags">
+            <span class="tag">Product Management</span>
+            <span class="tag">Анализ ЦА</span>
+            <span class="tag">Гипотезы SMART</span>
+            <span class="tag">Метрики</span>
+            <span class="tag">Юнит-экономика</span>
+        </div>
+    </header>
+    
+    <div class="progress-container">
+        <h3>Прогресс исследования</h3>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        <div class="status">
+            <div class="status-item">
+                <div class="status-value">6</div>
+                <div class="unit-label">этапов выполнено</div>
+            </div>
+            <div class="status-item">
+                <div class="status-value">4</div>
+                <div class="unit-label">сегмента ЦА</div>
+            </div>
+            <div class="status-item">
+                <div class="status-value">5</div>
+                <div class="unit-label">ключевых метрик</div>
+            </div>
+            <div class="status-item">
+                <div class="status-value">40%</div>
+                <div class="unit-label">маржинальность</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="step-container">
+        <h2>Шаг 1: Знакомство с продуктом</h2>
+        <div class="product-info">
+            <div class="info-card">
+                <h4>Название</h4>
+                <p>Pulse Казани (Kazan Pulse)</p>
+            </div>
+            <div class="info-card">
+                <h4>Тип</h4>
+                <p>Мобильное приложение (iOS / Android)</p>
+            </div>
+            <div class="info-card">
+                <h4>Цель</h4>
+                <p>Помощь туристам и жителям Казани в навигации по городу, поиске событий, мест, транспорта.</p>
+            </div>
+        </div>
+        
+        <h3>Ресурсы</h3>
+        <ul>
+            <li>Код на GitHub</li>
+            <li>Скриншоты интерфейса</li>
+            <li>Описание функционала (карты, события, маршруты)</li>
+        </ul>
+    </div>
+    
+    <div class="step-container">
+        <h2>Шаг 2: Анализ целевой аудитории</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Сегмент</th>
+                    <th>Характеристики</th>
+                    <th>Потребности</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Туристы (впервые)</strong></td>
+                    <td>Приезжие, незнакомы с городом</td>
+                    <td>Навигация, достопримечательности, события, транспорт</td>
+                </tr>
+                <tr>
+                    <td><strong>Туристы (повторно)</strong></td>
+                    <td>Знакомы с основными местами</td>
+                    <td>Скрытые локации, события, удобный маршрут</td>
+                </tr>
+                <tr>
+                    <td><strong>Жители Казани</strong></td>
+                    <td>Локальные пользователи</td>
+                    <td>Актуальные события, транспорт, новинки в городе</td>
+                </tr>
+                <tr>
+                    <td><strong>Бизнес-пользователи</strong></td>
+                    <td>Организаторы событий, гиды</td>
+                    <td>Продвижение своих услуг, привлечение аудитории</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Инструменты для анализа</h3>
+        <div class="tags">
+            <span class="tag">Google Analytics</span>
+            <span class="tag">Яндекс.Метрика</span>
+            <span class="tag">AppMetrica / Firebase</span>
+            <span class="tag">Опросы через приложение</span>
+        </div>
+    </div>
+    
+    <div class="step-container">
+        <h2>Шаг 3: Гипотезы для развития продукта (SMART)</h2>
+        
+        <div class="smart-hypothesis">
+            <h3>Гипотеза 1: Онлайн-заказ билетов</h3>
+            <p><strong>Если добавить функцию онлайн-заказа билетов на события прямо в приложении, то увеличим конверсию в покупку на 15% за квартал.</strong></p>
+            
+            <div class="smart-points">
+                <div class="smart-point">
+                    <strong>Конкретно:</strong> интеграция с билетными системами
+                </div>
+                <div class="smart-point">
+                    <strong>Измеримо:</strong> конверсия из просмотра события в покупку
+                </div>
+                <div class="smart-point">
+                    <strong>Достижимо:</strong> API партнеров (Kassir.ru и др.)
+                </div>
+                <div class="smart-point">
+                    <strong>Релевантно:</strong> упрощение процесса для пользователей
+                </div>
+                <div class="smart-point">
+                    <strong>Ограничение по времени:</strong> 3 месяца
+                </div>
+            </div>
+        </div>
+        
+        <div class="smart-hypothesis">
+            <h3>Гипотеза 2: Чат-поддержка с гидами</h3>
+            <p><strong>Если внедрить чат-поддержку с гидами и консьержами, то повысим retention на 10% за месяц.</strong></p>
+            
+            <div class="smart-points">
+                <div class="smart-point">
+                    <strong>Конкретно:</strong> встроенный чат
+                </div>
+                <div class="smart-point">
+                    <strong>Измеримо:</strong> Retention Rate (1-й, 7-й день)
+                </div>
+                <div class="smart-point">
+                    <strong>Достижимо:</strong> использование готовых решений (Intercom, Zendesk)
+                </div>
+                <div class="smart-point">
+                    <strong>Релевантно:</strong> улучшение пользовательского опыта
+                </div>
+                <div class="smart-point">
+                    <strong>Ограничение по времени:</strong> 4 недели
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="step-container">
+        <h2>Шаг 4: Метрики продукта</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Метрика</th>
+                    <th>Что измеряет</th>
+                    <th>Цель</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>DAU/MAU</strong></td>
+                    <td>Активность пользователей</td>
+                    <td class="metric-highlight">0.3 (30% возвращаются ежедневно)</td>
+                </tr>
+                <tr>
+                    <td><strong>Retention Rate (Day 1, Day 7)</strong></td>
+                    <td>Удержание новых пользователей</td>
+                    <td class="metric-highlight">40% (Day 1), 20% (Day 7)</td>
+                </tr>
+                <tr>
+                    <td><strong>LTV</strong></td>
+                    <td>Доход с пользователя за всё время</td>
+                    <td class="metric-highlight">500 ₽ (реклама + комиссии)</td>
+                </tr>
+                <tr>
+                    <td><strong>CAC</strong></td>
+                    <td>Стоимость привлечения пользователя</td>
+                    <td class="metric-highlight">150 ₽</td>
+                </tr>
+                <tr>
+                    <td><strong>Конверсия в действие</strong></td>
+                    <td>Эффективность интерфейса</td>
+                    <td class="metric-highlight">25%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="step-container">
+        <h2>Шаг 5: Задание 1 (адаптировано под Kazan Pulse)</h2>
+        
+        <div class="phase-container">
+            <h4>Фаза подготовки: анализ ЦА</h4>
+            <p>Провести онлайн-опрос среди пользователей приложения (Google Forms).</p>
+            <p><strong>Пример вопросов:</strong></p>
+            <ul>
+                <li>Как часто вы пользуетесь приложением?</li>
+                <li>Какие функции наиболее полезны?</li>
+                <li>Чего не хватает?</li>
+            </ul>
+        </div>
+        
+        <div class="phase-container">
+            <h4>Фаза исследования: гипотезы HADI</h4>
+            <p><strong>Hypothesis:</strong> Пользователям не хватает информации о реальной загруженности мест.</p>
+            <p><strong>Analysis:</strong> Собрать данные о посещаемости мест через геоданные.</p>
+            <p><strong>Design:</strong> Добавить индикатор "загруженности" на карте.</p>
+            <p><strong>Implementation:</strong> Запуск A/B теста для части пользователей.</p>
+        </div>
+        
+        <div class="phase-container">
+            <h4>Фаза фреймворка</h4>
+            <p><strong>Persons:</strong></p>
+            <ul>
+                <li>"Анна, 30 лет, туристка из Москвы"</li>
+                <li>"Ильдар, 45 лет, житель Казани, краевед"</li>
+            </ul>
+            <p><strong>Jobs-to-be-Done:</strong></p>
+            <ul>
+                <li>"Найти интересное событие на выходные"</li>
+                <li>"Построить пеший маршрут по историческому центру"</li>
+            </ul>
+        </div>
+        
+        <div class="phase-container">
+            <h4>Фаза Custdev</h4>
+            <p><strong>План сбора данных:</strong></p>
+            <ul>
+                <li>10 глубинных интервью с пользователями</li>
+                <li>Опрос 200+ респондентов через соцсети</li>
+                <li>Анализ отзывов в App Store / Google Play</li>
+            </ul>
+        </div>
+        
+        <div class="phase-container">
+            <h4>Фаза концепт-проекта</h4>
+            <p><strong>Стратегия развития:</strong></p>
+            <ol>
+                <li>Добавить интеграцию с городским транспортом (онлайн-оплата проезда)</li>
+                <li>Запустить систему рекомендаций на основе предпочтений</li>
+                <li>Внедрить gamification (бейджи за посещение мест)</li>
+            </ol>
+        </div>
+        
+        <div class="phase-container">
+            <h4>Фаза презентации</h4>
+            <p>Оформить в PDF (8–12 слайдов):</p>
+            <ul>
+                <li>Титульный слайд</li>
+                <li>Целевая аудитория</li>
+                <li>Гипотезы</li>
+                <li>Метрики</li>
+                <li>Стратегия развития</li>
+                <li>Юнит-экономика (бонус)</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="step-container">
+        <h2>Шаг 6: Юнит-экономика (бонусное задание)</h2>
+        
+        <div class="unit-economics">
+            <div class="unit-card">
+                <div class="unit-label">Что является юнитом?</div>
+                <div class="unit-value">MAU</div>
+                <p>Активный пользователь в месяц</p>
+            </div>
+            
+            <div class="unit-card">
+                <div class="unit-label">Доход с юнита</div>
+                <div class="unit-value">50 ₽</div>
+                <p>реклама + комиссия с билетов</p>
+            </div>
+            
+            <div class="unit-card">
+                <div class="unit-label">Расход на привлечение</div>
+                <div class="unit-value">30 ₽</div>
+                <p>таргетированная реклама, ASO</p>
+            </div>
+            
+            <div class="unit-card">
+                <div class="unit-label">Маржинальность</div>
+                <div class="marginality">40%</div>
+                <p>(50 – 30) / 50 = 40%</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Анализ продукта: Pulse Казани | Проект выполнен в рамках обучения Product Management</p>
+        <p>Проект выполнили: Ильяс, Семен, Глория | Все данные приведены для примера анализа</p>
+    </footer>
+</body>
+</html>
