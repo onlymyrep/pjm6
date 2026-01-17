@@ -272,6 +272,42 @@
             border-radius: 8px;
         }
         
+        .person-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .person-card {
+            background: linear-gradient(135deg, var(--secondary-bg), #1f1f1f);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .person-name {
+            color: var(--accent-light-purple);
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .person-details {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .person-details ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        
+        .person-details li {
+            margin-bottom: 5px;
+        }
+        
         .unit-economics {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -378,7 +414,7 @@
                 overflow-x: auto;
             }
             
-            .product-info, .unit-economics, .smart-points {
+            .product-info, .unit-economics, .smart-points, .person-cards {
                 grid-template-columns: 1fr;
             }
             
@@ -441,6 +477,10 @@
             .phase-container {
                 padding: 15px;
             }
+            
+            .person-card {
+                padding: 20px;
+            }
         }
         
         /* Дополнительные стили для улучшенного UX */
@@ -489,6 +529,24 @@
         .back-to-top.visible {
             opacity: 0.3;
         }
+        
+        .strategy-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        .strategy-list li {
+            margin-bottom: 15px;
+            padding-left: 10px;
+            position: relative;
+        }
+        
+        .strategy-list li:before {
+            content: "→";
+            color: var(--accent-purple);
+            position: absolute;
+            left: -15px;
+        }
     </style>
 </head>
 <body>
@@ -505,7 +563,7 @@
         <button id="musicToggle" class="paused"></button>
         <audio id="background-music" loop>
             <!-- Используем альтернативный источник музыки -->
-            <source src="Nine_Inch_Nails_-_New_Directive.mp3" type="audio/mpeg">
+            <source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_d1714ab38b.mp3?filename=ambient-piano-amp-strings-114473.mp3" type="audio/mpeg">
             Ваш браузер не поддерживает аудио элемент.
         </audio>
     </div>
@@ -520,6 +578,7 @@
             <a href="#step2" class="tag">Анализ ЦА</a>
             <a href="#step3" class="tag">Гипотезы SMART</a>
             <a href="#step4" class="tag">Метрики</a>
+            <a href="#step5" class="tag">Задание 1</a>
             <a href="#step6" class="tag">Юнит-экономика</a>
             <a href="#resources" class="tag">Ресурсы</a>
         </div>
@@ -689,13 +748,19 @@
         </table>
     </div>
     
-    <!-- Шаг 5 -->
+    <!-- Шаг 5 с обновленными фазами -->
     <div class="step-container" id="step5">
-        <h2>Шаг 5: Задание 1</h2>
+        <h2>Шаг 5: Задание 1 (адаптировано под Kazan Pulse)</h2>
         
         <div class="phase-container">
-            <h4>Фаза подготовки: анализ целевой аудитории</h4>
+            <h4>Фаза подготовки: анализ ЦА</h4>
             <p>Провести онлайн-опрос среди пользователей приложения (Google Forms).</p>
+            <p><strong>Пример вопросов:</strong></p>
+            <ul>
+                <li>Как часто вы пользуетесь приложением?</li>
+                <li>Какие функции наиболее полезны?</li>
+                <li>Чего не хватает?</li>
+            </ul>
         </div>
         
         <div class="phase-container">
@@ -704,6 +769,102 @@
             <p><strong>Analysis:</strong> Собрать данные о посещаемости мест через геоданные.</p>
             <p><strong>Design:</strong> Добавить индикатор "загруженности" на карте.</p>
             <p><strong>Implementation:</strong> Запуск A/B теста для части пользователей.</p>
+        </div>
+        
+        <!-- Новая фаза фреймворка -->
+        <div class="phase-container">
+            <h4>Фаза фреймворка</h4>
+            
+            <h5>Persons (Персоны):</h5>
+            <div class="person-cards">
+                <div class="person-card">
+                    <div class="person-name">Анна, 20 лет</div>
+                    <div class="person-details">
+                        <strong>Роль:</strong> туристка из Москвы<br>
+                        <strong>Цели:</strong> посмотреть основные достопримечательности, попробовать местную кухню, найти интересные события
+                    </div>
+                </div>
+                
+                <div class="person-card">
+                    <div class="person-name">Ильдар, 35 лет</div>
+                    <div class="person-details">
+                        <strong>Роль:</strong> житель Казани, краевед<br>
+                        <strong>Цели:</strong> узнавать о новых событиях в городе, находить малоизвестные исторические места, делиться знаниями с другими
+                    </div>
+                </div>
+                
+                <div class="person-card">
+                    <div class="person-name">Полина, 19 лет</div>
+                    <div class="person-details">
+                        <strong>Роль:</strong> студентка 2 курса КФУ<br>
+                        <strong>Интересы:</strong> танцы, йога, музыка<br>
+                        <strong>Цели:</strong> найти места для занятий, узнать о студенческих мероприятиях, открыть новые локации в городе
+                    </div>
+                </div>
+                
+                <div class="person-card">
+                    <div class="person-name">Ильяс, 26 лет</div>
+                    <div class="person-details">
+                        <strong>Роль:</strong> житель Казани, программист-разработчик<br>
+                        <strong>Интересы:</strong> автомобили, шахматы, искусство<br>
+                        <strong>Цели:</strong> находить выставки и культурные события, открывать новые места для досуга, планировать маршруты по городу
+                    </div>
+                </div>
+            </div>
+            
+            <h5>Jobs-to-be-Done (Задачи, которые нужно выполнить):</h5>
+            <ul>
+                <li>"Найти интересное событие на выходные"</li>
+                <li>"Построить пеший маршрут по историческому центру"</li>
+                <li>"Узнать расписание общественного транспорта"</li>
+                <li>"Найти места для конкретного хобби или интереса"</li>
+                <li>"Спланировать культурный досуг на неделю"</li>
+            </ul>
+        </div>
+        
+        <!-- Новая фаза Custdev -->
+        <div class="phase-container">
+            <h4>Фаза Custdev</h4>
+            <p><strong>План сбора данных:</strong></p>
+            <ul>
+                <li><strong>10 глубинных интервью</strong> с пользователями приложения для понимания их реальных потребностей и проблем</li>
+                <li><strong>Опрос 200+ респондентов</strong> через социальные сети (ВКонтакте, Telegram) для количественного анализа</li>
+                <li><strong>Анализ отзывов</strong> в App Store / Google Play для выявления частых жалоб и предложений</li>
+                <li><strong>Наблюдение за пользователями</strong> в реальных условиях использования приложения</li>
+                <li><strong>Сравнительный анализ</strong> конкурентных приложений (2GIS, Яндекс.Карты и др.)</li>
+            </ul>
+            
+            <p><strong>Ключевые вопросы для исследования:</strong></p>
+            <ul>
+                <li>Какие функции приложения используются чаще всего?</li>
+                <li>С какими трудностями сталкиваются пользователи?</li>
+                <li>Что побуждает пользователей рекомендовать приложение друзьям?</li>
+                <li>Какие дополнительные функции пользователи хотели бы видеть?</li>
+                <li>Как пользователи ищут информацию о событиях без приложения?</li>
+            </ul>
+        </div>
+        
+        <!-- Новая фаза концепт-проекта -->
+        <div class="phase-container">
+            <h4>Фаза концепт-проекта</h4>
+            <p><strong>Стратегия развития продукта:</strong></p>
+            
+            <ol class="strategy-list">
+                <li><strong>Добавить интеграцию с городским транспортом</strong> - реализовать онлайн-оплату проезда, отображение реального времени прибытия транспорта, планирование маршрутов с учетом расписания</li>
+                <li><strong>Запустить систему рекомендаций</strong> на основе предпочтений пользователя и его поведения в приложении, учитывая интересы, местоположение и предыдущий опыт</li>
+                <li><strong>Внедрить gamification (игрофикацию)</strong> - бейджи за посещение мест, достижения за выполнение маршрутов, рейтинговая система для активных пользователей</li>
+                <li><strong>Реализовать социальные функции</strong> - возможность делиться маршрутами и находками, создавать совместные планы посещения мест, оставлять отзывы и рекомендации</li>
+                <li><strong>Расширить функционал для бизнес-пользователей</strong> - инструменты для продвижения мероприятий, аналитика посещаемости, таргетированные предложения для разных сегментов аудитории</li>
+            </ol>
+            
+            <p><strong>Ожидаемые результаты:</strong></p>
+            <ul>
+                <li>Увеличение DAU/MAU на 20% за 6 месяцев</li>
+                <li>Увеличение среднего времени сессии на 30%</li>
+                <li>Повышение конверсии в целевые действия на 25%</li>
+                <li>Увеличение NPS (Net Promoter Score) на 15 пунктов</li>
+                <li>Рост доходов от монетизации на 40% в год</li>
+            </ul>
         </div>
     </div>
     
@@ -766,7 +927,7 @@
             <div class="team-member">Семен merylcur</div>
             <div class="team-member">Глория katybeas</div>
         </div>
-        <p style="margin-top: 20px;">Все данные приведены для примера анализа</p>
+        <p style="margin-top: 20px;">© 2024 | Все данные приведены для примера анализа</p>
     </footer>
     
     <script>
