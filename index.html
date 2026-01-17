@@ -561,6 +561,36 @@
             border-radius: 8px;
             padding: 20px;
         }
+        
+        .hypothesis-item h3 {
+            margin-top: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        /* Стили для улучшенного отображения SMART */
+        .smart-details {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(138, 43, 226, 0.3);
+        }
+        
+        .smart-point {
+            display: flex;
+            margin-bottom: 8px;
+            align-items: flex-start;
+        }
+        
+        .smart-label {
+            font-weight: bold;
+            min-width: 120px;
+            color: var(--accent-light-purple);
+        }
+        
+        .smart-value {
+            flex: 1;
+            color: var(--text-secondary);
+        }
     </style>
 </head>
 <body>
@@ -677,41 +707,165 @@
             <div class="hypothesis-item">
                 <h3>Гипотеза 1: Онлайн-заказ билетов</h3>
                 <p><strong>Если добавить функцию онлайн-заказа билетов на события прямо в приложении, то увеличим конверсию в покупку на 15% за квартал.</strong></p>
-                <p>Конкретно: интеграция с билетными системами</p>
-                <p>Измеримо: конверсия из просмотра события в покупку</p>
-                <p>Достижимо: API партнеров (Kassir.ru и др.)</p>
-                <p>Релевантно: упрощение процесса для пользователей</p>
-                <p>Ограничение по времени: 3 месяца</p>
+                <div class="smart-details">
+                    <div class="smart-point">
+                        <span class="smart-label">Конкретно:</span>
+                        <span class="smart-value">интеграция с билетными системами</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Измеримо:</span>
+                        <span class="smart-value">конверсия из просмотра события в покупку</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Достижимо:</span>
+                        <span class="smart-value">API партнеров (Kassir.ru и др.)</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Релевантно:</span>
+                        <span class="smart-value">упрощение процесса для пользователей</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Ограничение:</span>
+                        <span class="smart-value">3 месяца</span>
+                    </div>
+                </div>
             </div>
             
             <div class="hypothesis-item">
                 <h3>Гипотеза 2: Чат-поддержка с гидами</h3>
                 <p><strong>Если внедрить чат-поддержку с гидами и консьержами, то повысим retention на 10% за месяц.</strong></p>
-                <p>Конкретно: встроенный чат</p>
-                <p>Измеримо: Retention Rate (1-й, 7-й день)</p>
-                <p>Достижимо: использование готовых решений (Intercom, Zendesk)</p>
-                <p>Релевантно: улучшение пользовательского опыта</p>
-                <p>Ограничение по времени: 4 недели</p>
+                <div class="smart-details">
+                    <div class="smart-point">
+                        <span class="smart-label">Конкретно:</span>
+                        <span class="smart-value">встроенный чат</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Измеримо:</span>
+                        <span class="smart-value">Retention Rate (1-й, 7-й день)</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Достижимо:</span>
+                        <span class="smart-value">использование готовых решений (Intercom, Zendesk)</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Релевантно:</span>
+                        <span class="smart-value">улучшение пользовательского опыта</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Ограничение:</span>
+                        <span class="smart-value">4 недели</span>
+                    </div>
+                </div>
             </div>
             
             <div class="hypothesis-item">
                 <h3>Гипотеза 3: Оффлайн-карты</h3>
                 <p><strong>Если добавить возможность скачивания оффлайн-карт города, то увеличим использование приложения туристами на 25% за 2 месяца.</strong></p>
-                <p>Конкретно: функция скачивания карт для оффлайн-использования</p>
-                <p>Измеримо: количество скачиваний оффлайн-карт и активность в режиме оффлайн</p>
-                <p>Достижимо: использование кэширования карт и оптимизация хранения данных</p>
-                <p>Релевантно: решение проблемы отсутствия интернета у туристов</p>
-                <p>Ограничение по времени: 2 месяца</p>
+                <div class="smart-details">
+                    <div class="smart-point">
+                        <span class="smart-label">Конкретно:</span>
+                        <span class="smart-value">функция скачивания карт для оффлайн-использования</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Измеримо:</span>
+                        <span class="smart-value">количество скачиваний оффлайн-карт</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Достижимо:</span>
+                        <span class="smart-value">кэширование карт, оптимизация хранения</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Релевантно:</span>
+                        <span class="smart-value">решение проблемы отсутствия интернета</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Ограничение:</span>
+                        <span class="smart-value">2 месяца</span>
+                    </div>
+                </div>
             </div>
             
             <div class="hypothesis-item">
                 <h3>Гипотеза 4: Партнёрская программа</h3>
                 <p><strong>Если запустить партнёрскую программу для местных заведений, то увеличим количество точек интереса на карте на 40% за квартал.</strong></p>
-                <p>Конкретно: система добавления мест силами бизнеса</p>
-                <p>Измеримо: количество новых точек на карте и активность партнеров</p>
-                <p>Достижимо: создание простой CMS для партнеров</p>
-                <p>Релевантно: расширение базы мест и актуальность информации</p>
-                <p>Ограничение по времени: 3 месяца</p>
+                <div class="smart-details">
+                    <div class="smart-point">
+                        <span class="smart-label">Конкретно:</span>
+                        <span class="smart-value">система добавления мест силами бизнеса</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Измеримо:</span>
+                        <span class="smart-value">количество новых точек на карте</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Достижимо:</span>
+                        <span class="smart-value">создание простой CMS для партнеров</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Релевантно:</span>
+                        <span class="smart-value">расширение базы мест и актуальность информации</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Ограничение:</span>
+                        <span class="smart-value">3 месяца</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Новая гипотеза 5: Короткий трейлер -->
+            <div class="hypothesis-item">
+                <h3>Гипотеза 5: Короткий трейлер событий</h3>
+                <p><strong>Если добавить короткие видео-трейлеры событий/бизнесов при наведении, то увеличим конверсию в посещение на 20% за 2 месяца.</strong></p>
+                <div class="smart-details">
+                    <div class="smart-point">
+                        <span class="smart-label">Конкретно:</span>
+                        <span class="smart-value">превью-видео при наведении на точку интереса</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Измеримо:</span>
+                        <span class="smart-value">конверсия из просмотра в посещение</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Достижимо:</span>
+                        <span class="smart-value">интеграция с YouTube/Vimeo, локальное хранение</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Релевантно:</span>
+                        <span class="smart-value">лучшее представление о месте/событии</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Ограничение:</span>
+                        <span class="smart-value">2 месяца</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Новая гипотеза 6: AR-навигация -->
+            <div class="hypothesis-item">
+                <h3>Гипотеза 6: AR-навигация</h3>
+                <p><strong>Если внедрить AR-навигацию с указателями в реальном времени, то увеличим вовлеченность новых пользователей на 35% за квартал.</strong></p>
+                <div class="smart-details">
+                    <div class="smart-point">
+                        <span class="smart-label">Конкретно:</span>
+                        <span class="smart-value">дополненная реальность для навигации</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Измеримо:</span>
+                        <span class="smart-value">время использования AR-режима, retention</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Достижимо:</span>
+                        <span class="smart-value">ARKit для iOS, пошаговая реализация</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Релевантно:</span>
+                        <span class="smart-value">уникальный опыт, конкурентное преимущество</span>
+                    </div>
+                    <div class="smart-point">
+                        <span class="smart-label">Ограничение:</span>
+                        <span class="smart-value">3 месяца (пилот для основных достопримечательностей)</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -916,8 +1070,8 @@
             
             <div class="unit-card">
                 <div style="color: #d4d4d4; font-size: 0.9rem;">Маржинальность</div>
-                <div class="marginality">80%</div>
-                <p>(70 – 30) / 50 = 80%</p>
+                <div class="marginality">57%</div>
+                <p>(70 – 30) / 70 = 57%</p>
             </div>
         </div>
     </div>
