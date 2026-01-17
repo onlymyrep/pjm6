@@ -75,6 +75,7 @@
             box-shadow: 0 4px 20px rgba(122, 63, 241, 0.3);
             min-width: 300px;
             max-width: 90%;
+            backdrop-filter: blur(10px);
         }
         
         .music-player button {
@@ -493,8 +494,8 @@
         <button id="pauseBtn">❚❚</button>
         <span>New Directive - Фоновая музыка</span>
         <audio id="background-music" loop>
-            <!-- Альтернативный источник музыки, так как hitmotop недоступен -->
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            <!-- Используем альтернативный источник музыки -->
+            <source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_d1714ab38b.mp3?filename=ambient-piano-amp-strings-114473.mp3" type="audio/mpeg">
             Ваш браузер не поддерживает аудио элемент.
         </audio>
     </div>
@@ -771,12 +772,14 @@
             const playBtn = document.getElementById('playBtn');
             const pauseBtn = document.getElementById('pauseBtn');
             
-            // Попытка воспроизвести музыку автоматически (может не сработать из-за политики браузеров)
-            audio.volume = 0.3; // Установка громкости на 30%
+            // Установка громкости на 30%
+            audio.volume = 0.3;
             
             playBtn.addEventListener('click', function() {
                 audio.play().catch(e => {
                     console.log("Автовоспроизведение заблокировано, нажмите на кнопку воспроизведения");
+                    // Показываем уведомление пользователю
+                    alert("Пожалуйста, нажмите на кнопку воспроизведения для запуска музыки");
                 });
             });
             
@@ -843,39 +846,6 @@
                     behavior: 'smooth'
                 });
             });
-            
-            // Создание симуляции cookie** banner с использованием стилей Osano
-            setTimeout(() => {
-                const cookieBanner = document.createElement('div');
-                cookieBanner.className = 'osano-cm-window';
-                cookieBanner.innerHTML = `
-                    <div class="osano-cm-dialog osano-cm-dialog--type_box osano-cm-dialog--position_bottom-right" style="opacity: 1; visibility: visible;">
-                        <div class="osano-cm-dialog__content">
-                            <p class="osano-cm-content__message">Этот сайт использует аналитические данные для улучшения пользовательского опыта. Продолжая использовать сайт, вы соглашаетесь с этим.</p>
-                        </div>
-                        <div class="osano-cm-dialog__buttons">
-                            <button class="osano-cm-button osano-cm-button--type_deny" style="background-color: #7A3FF1; color: white; border-color: white;">Отклонить</button>
-                            <button class="osano-cm-button" style="background-color: #37CD8F; color: white; border-color: white;">Принять</button>
-                        </div>
-                    </div>
-                `;
-                
-                // Добавляем баннер на страницу
-                document.body.appendChild(cookieBanner);
-                
-                // Обработчики для кнопок
-                cookieBanner.querySelector('.osano-cm-button--type_deny').addEventListener('click', function() {
-                    cookieBanner.style.opacity = '0';
-                    cookieBanner.style.transition = 'opacity 0.5s';
-                    setTimeout(() => cookieBanner.style.display = 'none', 500);
-                });
-                
-                cookieBanner.querySelector('.osano-cm-button:not(.osano-cm-button--type_deny)').addEventListener('click', function() {
-                    cookieBanner.style.opacity = '0';
-                    cookieBanner.style.transition = 'opacity 0.5s';
-                    setTimeout(() => cookieBanner.style.display = 'none', 500);
-                });
-            }, 2000);
         });
     </script>
 </body>
